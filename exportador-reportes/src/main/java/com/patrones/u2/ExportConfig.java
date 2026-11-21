@@ -1,5 +1,6 @@
 package com.patrones.u2;
 
+import java.util.IllformedLocaleException;
 import java.util.Locale;
 
 public final class ExportConfig {
@@ -113,7 +114,7 @@ public final class ExportConfig {
                 if (locale == null || new Locale.Builder().setLanguageTag(locale).build().getLanguage().isEmpty()) {
                     throw new IllegalArgumentException("Sin idioma");
                 }
-            } catch (IllegalArgumentException ex) {
+            } catch (IllegalArgumentException | IllformedLocaleException ex) {
                 throw new IllegalStateException("El idioma debe ser una etiqueta BCP 47 válida", ex);
             }
             return new ExportConfig(this);
